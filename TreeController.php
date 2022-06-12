@@ -9,6 +9,6 @@ class TreeController extends Controller
 {
     public function index(){
         $categories = Categories::getCategories();
-        return view('tree.index')->with(['categories' => $categories]);
+        return view('tree')->with(['categories' => $categories]);
     }
 }
