@@ -3,7 +3,7 @@
         <li>
             {{$category->name}}
             @if($category->sub->count())
-                @include('tree.index', ['categories' => $category->sub])
+                @include('index', ['categories' => $category->sub])
             @endif
         </li>
     @endforeach
