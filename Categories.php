@@ -12,7 +12,6 @@ class Categories extends Model
     public static function getCategories(){
         // Получаем одним запросом все разделы
         $arr = self::orderBy('name')->get();
-
         // Запускаем рекурсивную постройку дерева и отдаем на выдачу
         return self::buildTree($arr, 0);
     }
@@ -29,5 +28,15 @@ class Categories extends Model
         }
 
         return $found;
+    }
+    
+    // Альтернативный вариант
+    
+    public static function getTree2(){ // получаем корневые категории (у которых нету родителей) с жадной загрузкой отношения categories() 
+        return self::where('parent_id','=',null)->with('categories')->get();
+    }
+    
+    public function categories(){ // отношение категории к дочерним категориям, отдаётся сразу с жадной загрузкой
+        return $this->hasMany(self::class,'parent_id','id')->with('categories');
     }
 }
