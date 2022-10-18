@@ -32,7 +32,7 @@ class Categories extends Model
 
     // Альтернативный вариант
 
-    public static function getTree2(){ // получаем корневые категории (у которых нету родителей) с жадной загрузкой отношения categories()
+    public static function getCategories2(){ // получаем корневые категории (у которых нету родителей) с жадной загрузкой отношения categories()
         return self::where('p_id','=',0)->with('categories')->get();
     }
 
