@@ -29,14 +29,14 @@ class Categories extends Model
 
         return $found;
     }
-    
+
     // Альтернативный вариант
-    
-    public static function getTree2(){ // получаем корневые категории (у которых нету родителей) с жадной загрузкой отношения categories() 
-        return self::where('parent_id','=',null)->with('categories')->get();
+
+    public static function getTree2(){ // получаем корневые категории (у которых нету родителей) с жадной загрузкой отношения categories()
+        return self::where('p_id','=',0)->with('categories')->get();
     }
-    
+
     public function categories(){ // отношение категории к дочерним категориям, отдаётся сразу с жадной загрузкой
-        return $this->hasMany(self::class,'parent_id','id')->with('categories');
+        return $this->hasMany(self::class,'p_id','id')->with('categories');
     }
 }
