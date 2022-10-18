@@ -11,11 +11,9 @@ class TreeController extends Controller
         $categories = Categories::getCategories();
         return view('tree')->with(['categories' => $categories]);
     }
-    
-    // Альтернативный вариант
-    
+
     public function index2(){
-        $categories = Categories::getTree2();
+        $categories = Categories::getCategories2();
         return view('tree2')->with(['categories' => $categories]);
     }
 }
